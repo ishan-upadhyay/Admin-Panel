@@ -1,8 +1,9 @@
-//var Port= process.env.PORT || 3000;
+const PORT= process.env.PORT || 3000;
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
 const app = express();
+
 
 app.use(express.static('public'));
 
@@ -41,6 +42,6 @@ app.get("/deleted_posts.html",function(request, response){
     response.sendFile(__dirname  + "/deleted_posts.html");
 
 });
-app.listen(process.env.PORT || 3000 ,function(){
+app.listen(PORT ,function(){
       console.log("Server started at 3000");
 });
