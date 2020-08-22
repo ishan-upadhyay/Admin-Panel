@@ -251,7 +251,7 @@ $("#btn-resetPassword").click(function() {
   var email = $("#exampleInputEmail").val();
   if (email != "") {
       auth.sendPasswordResetEmail(email).then(function() {
-          window.alert("Email has been sent to you please check.");
+          window.alert("If this Email is correct, an email has been sent sto you please check.");
       }).catch(function(error) {
           var errorCode = error.code;
           var errorMessage = error.message;
