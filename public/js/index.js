@@ -13,21 +13,26 @@ firebase.initializeApp(firebaseConfig);
 
 firebase.auth.Auth.Persistence.LOCAL;
 
+var postrootRef = firebase.database().ref().child("posts");
 
+postrootRef.orderByChild("type").equalTo("post").on("child_added", childSnap => {
 
-// function openModal() {
-//   $('#tryModal').modal('show');
-//   alert("hi");
-// }
-// function showinfo(key){
-//  alert(key);
-// $('#tryModal').modal('show');
-// }
+  var hostid = childSnap.child("hostId").val();
+  var commentCount = childSnap.child("commentCount").val();
+  var description = childSnap.child("description").val();
+  var publishDate = childSnap.child("publishDate").val();
+  var type= childSnap.child("type").val();
+  
+  $("#event_name").append("<span></span><div class='dropdown'><button style='float:right' class='btn  animated--fade-in' type='button' id='dropdownMenuButton ' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a  id='edit-dd' styles='font-size:8px;' class='dropdown-item'  onclick=editposts('" + childSnap.key + "')><i class='fas fa-pen editdd'></i>Edit post</a><a id= 'del-dd'styles='font-size:8px;'class='dropdown-item' href='#' onclick=deleteposts('" + childSnap.key + "')><i class='fas fa-trash-alt deldd'></i>Delete post</a></div></div>");
+  $("#event_name").append("<p> HOST ID: " + hostid + "</p>");
+  $("#event_name").append("<p> PUBLISHED ON: " + publishDate + "</p>");
+  $("#event_name").append("<p> TYPE: " + type + "</p>");
+  $("#event_name").append("<p> DESCRIPTION:" + description + "</p><hr><hr>");
+});
 
+var eventrootRef = firebase.database().ref().child("posts");
 
-var rootRef = firebase.database().ref().child("posts");
-
-rootRef.on("child_added", childSnap => {
+eventrootRef.orderByChild("type").equalTo("event").on("child_added", childSnap => {
 
 
 
@@ -35,17 +40,35 @@ rootRef.on("child_added", childSnap => {
   var commentCount = childSnap.child("commentCount").val();
   var description = childSnap.child("description").val();
   var publishDate = childSnap.child("publishDate").val();
-  $("#event_name").append("<span></span><div class='dropdown'><button style='float:right' class='btn  animated--fade-in' type='button' id='dropdownMenuButton ' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a  id='edit-dd' styles='font-size:8px;' class='dropdown-item'  onclick=editposts('" + childSnap.key + "')><i class='fas fa-pen editdd'></i>Edit post</a><a id= 'del-dd'styles='font-size:8px;'class='dropdown-item' href='#' onclick=deleteposts('" + childSnap.key + "')><i class='fas fa-trash-alt deldd'></i>Delete post</a></div></div>");
-  $("#event_name").append("<p> HOST ID: " + hostid + "</p>");
-  $("#event_name").append("<p> PUBLISHED ON: " + publishDate + "</p>");
-  $("#event_name").append("<p> DESCRIPTION:" + description + "</p><hr><hr>");
-
-
-
-
-
+  var type= childSnap.child("type").val();
+  
+  
+  $("#event_events_name").append("<span></span><div class='dropdown'><button style='float:right' class='btn  animated--fade-in' type='button' id='dropdownMenuButton ' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a  id='edit-dd' styles='font-size:8px;' class='dropdown-item'  onclick=editposts('" + childSnap.key + "')><i class='fas fa-pen editdd'></i>Edit post</a><a id= 'del-dd'styles='font-size:8px;'class='dropdown-item' href='#' onclick=deleteposts('" + childSnap.key + "')><i class='fas fa-trash-alt deldd'></i>Delete post</a></div></div>");
+  $("#event_events_name").append("<p> HOST ID: " + hostid + "</p>");
+  $("#event_events_name").append("<p> PUBLISHED ON: " + publishDate + "</p>");
+  $("#event_events_name").append("<p> TYPE: " + type + "</p>");
+  $("#event_events_name").append("<p> DESCRIPTION:" + description + "</p><hr><hr>");
 });
 
+
+var quizrootRef = firebase.database().ref().child("posts");
+
+quizrootRef.orderByChild("type").equalTo("quiz").on("child_added", childSnap => {
+
+
+
+  var hostid = childSnap.child("hostId").val();
+  var commentCount = childSnap.child("commentCount").val();
+  var description = childSnap.child("description").val();
+  var publishDate = childSnap.child("publishDate").val();
+  var type= childSnap.child("type").val();
+  
+  $("#event_quiz_name").append("<span></span><div class='dropdown'><button style='float:right' class='btn  animated--fade-in' type='button' id='dropdownMenuButton ' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a  id='edit-dd' styles='font-size:8px;' class='dropdown-item'  onclick=editposts('" + childSnap.key + "')><i class='fas fa-pen editdd'></i>Edit post</a><a id= 'del-dd'styles='font-size:8px;'class='dropdown-item' href='#' onclick=deleteposts('" + childSnap.key + "')><i class='fas fa-trash-alt deldd'></i>Delete post</a></div></div>");
+  $("#event_quiz_name").append("<p> HOST ID: " + hostid + "</p>");
+  $("#event_quiz_name").append("<p> PUBLISHED ON: " + publishDate + "</p>");
+  $("#event_quiz_name").append("<p> TYPE: " + type + "</p>");
+  $("#event_quiz_name").append("<p> DESCRIPTION:" + description + "</p><hr><hr>");
+});
 
 
 function editposts(key) {

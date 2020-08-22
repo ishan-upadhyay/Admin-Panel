@@ -12582,3 +12582,11 @@ color: #1cc88a;
 #del-dd:hover{
     color: red;
 }
+.back-arrow{
+
+    color: #206a5d;
+    margin-bottom: 10px;
+}
+.back-arrow:hover{
+    color: #1cc88a;
+}

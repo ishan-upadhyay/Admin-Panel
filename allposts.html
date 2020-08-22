@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>KD Admin - Blocked User</title>
+    <title>KD Admin - Posts</title>
 
     <!-- Custom fonts for this template-->
     <script src="https://kit.fontawesome.com/2bb6c061b4.js" crossorigin="anonymous"></script>
@@ -58,6 +58,7 @@
             <hr class="sidebar-divider">
 
 
+
             <!-- Nav Item - Charts -->
             <li class="nav-item">
                 <a class="nav-link" href="users.html">
@@ -65,7 +66,7 @@
                     <span>Users</span></a>
             </li>
 
-            <li class="nav-item ">
+            <li class="nav-item active">
                 <a class="nav-link" href="allposts.html">
                     <i class="fas fa-clone"></i>
                     <span>All Posts</span></a>
@@ -75,26 +76,24 @@
                     <i class="fas fa-trash"></i>
                     <span>Deleted Posts</span></a>
             </li>
-            <li class="nav-item active ">
+            <li class="nav-item ">
                 <a class="nav-link" href="Blocked_users.html">
                     <i class="fas fa-user-lock"></i>
                     <span>Blocked Users</span></a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item  ">
                 <a class="nav-link" href="transaction.html">
                     <i class="fa fa-inr"></i>
                     <span>Pending Transaction</span></a>
             </li>
 
 
-            <!-- Nav Item - Tables -->
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 
             <!-- Sidebar Toggler (Sidebar) -->
-           
+            
 
         </ul>
         <!-- End of Sidebar -->
@@ -110,8 +109,8 @@
 
                     <!-- Sidebar Toggle (Topbar) -->
                     <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-                        <i class="fa fa-bars"></i>
-                    </button>
+            <i class="fa fa-bars"></i>
+          </button>
 
                     <!-- Topbar Search -->
                     <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -119,8 +118,8 @@
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
+                  <i class="fas fa-search fa-sm"></i>
+                </button>
                             </div>
                         </div>
                     </form>
@@ -140,8 +139,8 @@
                                         <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
                                         <div class="input-group-append">
                                             <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
+                        <i class="fas fa-search fa-sm"></i>
+                      </button>
                                         </div>
                                     </div>
                                 </form>
@@ -215,7 +214,8 @@
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
-                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.</div>
+                                        <div class="text-truncate">Hi there! I am wondering if you can help me with a problem I've been having.
+                                        </div>
                                         <div class="small text-gray-500">Emily Fowler · 58m</div>
                                     </div>
                                 </a>
@@ -288,40 +288,76 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">Blocked Users</h1>
-                    <p class="mb-4">The Blocked users from the registered users are: </a>
+                    <h1 class="h3 mb-2 text-gray-800">All Posts</h1>
+                    <p class="mb-4">From the registered users are: </a>
                     </p>
-
-                    <!-- Content Row -->
                     <div class="row">
 
-                        <div class="col-xl-12 col-lg-12">
-
-
+                       
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a href="posts.html">
                             <div class="card border-left-primary shadow h-100 py-2">
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold   mb-1 " id="event_Blocked_user" style="color:#838383"> </div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="event_description">
-                                            </div>
+                                           
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Posts</div>
                                         </div>
                                         <div class="col-auto">
+                                            
+                                            <i class="fas fa-camera fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                   
+                        
+                        <div  class="col-xl-3 col-md-6 mb-4">
+                            <a href="events.html">
+                            <div class="card border-left-success shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Events</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
+                        </a>
                         </div>
-
+                 
+                        
+                        <div class="col-xl-3 col-md-6 mb-4">
+                            <a href="quiz.html">
+                            <div class="card border-left-info shadow h-100 py-2">
+                                <div class="card-body">
+                                    <div class="row no-gutters align-items-center">
+                                        <div class="col mr-2">
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Quiz's</div>
+                                        </div>
+                                        <div class="col-auto">
+                                            
+                                            <i class="fas fa-puzzle-piece fa-2x text-gray-300"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        </div>
+                   
+                       
                     </div>
-                    <!-- /.container-fluid -->
-
                 </div>
                 <!-- End of Main Content -->
 
-                <!-- Footer -->
+                <!-- Footer 
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
@@ -329,11 +365,19 @@
                         </div>
                     </div>
                 </footer>
-                <!-- End of Footer -->
+                End of Footer -->
 
             </div>
             <!-- End of Content Wrapper -->
-
+  
+                <footer class="sticky-footer bg-white">
+                    <div class="container my-auto">
+                        <div class="copyright text-center my-auto">
+                            <span>Copyright &copy; Khelod 2020</span>
+                        </div>
+                    </div>
+                </footer>
+                
         </div>
         <!-- End of Page Wrapper -->
 
@@ -349,8 +393,8 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
                         <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
+              <span aria-hidden="true">×</span>
+            </button>
                     </div>
                     <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                     <div class="modal-footer">
@@ -360,6 +404,8 @@
                 </div>
             </div>
         </div>
+
+        
 
         <!-- Bootstrap core JavaScript-->
         <script src="vendor/jquery/jquery.min.js"></script>
@@ -382,12 +428,9 @@
         <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
         <script src="js/index.js"></script>
 
-        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-        </script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous">
-        </script>
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 
 </body>
 

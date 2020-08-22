@@ -32,6 +32,19 @@ app.get("/posts.html", function(request, response) {
 
 });
 
+app.get("/events.html", function(request, response) {
+    response.sendFile(__dirname + "/events.html");
+
+});
+app.get("/quiz.html", function(request, response) {
+    response.sendFile(__dirname + "/quiz.html");
+
+});
+app.get("/allposts.html", function(request, response) {
+    response.sendFile(__dirname + "/allposts.html");
+
+});
+
 app.get("/users.html", function(request, response) {
     response.sendFile(__dirname + "/users.html");
 
