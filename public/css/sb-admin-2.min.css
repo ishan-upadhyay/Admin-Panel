@@ -12557,8 +12557,11 @@ body.sidebar-toggled footer.sticky-footer {
     width: 100%
 }
 
+#closebutton{
+    color:white;
+}
 #closebutton:hover{
-    color : blue;
+     color:#f3e6e3;
 
 }
 #desc{
@@ -12593,3 +12596,4 @@ color: #1cc88a;
 .a-allposts:hover{
     text-decoration:none ;
 }
+
