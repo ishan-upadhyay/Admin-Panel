@@ -40,6 +40,10 @@ app.get("/quiz.html", function(request, response) {
     response.sendFile(__dirname + "/quiz.html");
 
 });
+app.get("/article.html", function(request, response) {
+    response.sendFile(__dirname + "/article.html");
+
+});
 app.get("/allposts.html", function(request, response) {
     response.sendFile(__dirname + "/allposts.html");
 
@@ -64,6 +68,13 @@ app.get("/transaction.html", function(request, response) {
     response.sendFile(__dirname + "/transaction.html");
 });
 
+app.get("/sports.html", function(request, response) {
+    response.sendFile(__dirname + "/sports.html");
+});
+
+app.get("/questions.html", function(request, response) {
+    response.sendFile(__dirname + "/questions.html");
+});
 app.listen(PORT ,function(){
       console.log("Server started at 3000");
 });
