@@ -5,8 +5,8 @@ var firebaseConfig = {
   projectId: "khelod-admin",
   storageBucket: "khelod-admin.appspot.com",
   messagingSenderId: "46514113739",
-  appId: "1:46514113739:web:944737c081bbd984481f4e",
-  measurementId: "G-CWV0M22B5K"
+  appId: "1:46514113739:web:47283b15902b9a31481f4e",
+  measurementId: "G-GJVX61KX9R"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -71,6 +71,26 @@ quizrootRef.orderByChild("type").equalTo("quiz").on("child_added", childSnap => 
 });
 
 
+var articlerootRef = firebase.database().ref().child("posts");
+
+articlerootRef.orderByChild("type").equalTo("article").on("child_added", childSnap => {
+
+
+
+  var hostid = childSnap.child("hostId").val();
+  var commentCount = childSnap.child("commentCount").val();
+  var description = childSnap.child("description").val();
+  var publishDate = childSnap.child("publishDate").val();
+  var type= childSnap.child("type").val();
+  
+  $("#event_article_name").append("<span></span><div class='dropdown'><button style='float:right' class='btn  animated--fade-in' type='button' id='dropdownMenuButton ' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false'><i class='fas fa-ellipsis-v'></i></button><div class='dropdown-menu' aria-labelledby='dropdownMenuButton'><a  id='edit-dd' styles='font-size:8px;' class='dropdown-item'  onclick=editposts('" + childSnap.key + "')><i class='fas fa-pen editdd'></i>Edit post</a><a id= 'del-dd'styles='font-size:8px;'class='dropdown-item' href='#' onclick=deleteposts('" + childSnap.key + "')><i class='fas fa-trash-alt deldd'></i>Delete post</a></div></div>");
+  $("#event_article_name").append("<p> HOST ID: " + hostid + "</p>");
+  $("#event_article_name").append("<p> PUBLISHED ON: " + publishDate + "</p>");
+  $("#event_article_name").append("<p> TYPE: " + type + "</p>");
+  $("#event_article_name").append("<p> DESCRIPTION:" + description + "</p><hr><hr>");
+});
+
+
 function editposts(key) {
   $('#tryModal').modal('show');
   $(window).on('shown.bs.modal', function() {
@@ -101,34 +121,6 @@ function editposts(key) {
 
 
 
-
-function deleteposts(key) {
-
-
-  var deleteRef = firebase.database().ref().child("posts").child(key);
-  firebase.database().ref('posts/' + key).on('value', snapshot => {
-      hostId = snapshot.val().hostId;
-      publishDate = snapshot.val().publishDate;
-      description = snapshot.val().description;
-      data = {
-          hostId,
-          description,
-          publishDate
-      };
-      firebase.database().ref('deletedPosts/').push(data);
-  });
-
-  return deleteRef.remove()
-      .then(function() {
-          window.alert("Deleted successfully\n Refresh The Page to see the changes");
-          window.location.reload();
-      })
-      .catch(function() {
-          console.log("error occured");
-      });
-
-}
-
 var rootuserRef = firebase.database().ref().child("users");
 
 rootuserRef.on("child_added", childSnap => {
@@ -150,22 +142,23 @@ rootuserRef.on("child_added", childSnap => {
 });
 
 function Blockeduser(key) {
+  rootuserRef.once("value",childSnap=>{
+    childSnap.forEach(function(snapshot){
+      // console.log(snapshot.val());
+      data={};
+      if(snapshot.key == key){
+       
+        snapshot.forEach(function(child){
+          data[child.key]=child.val();
+        });
+        firebase.database().ref('Blockedusers/').push(data);
+      
+      }
+    })
+
+  })
   var BlockRef = firebase.database().ref().child("users").child(key);
-
-  firebase.database().ref('users/' + key).on('value', snapshot => {
-      displayName = snapshot.val().displayName;
-      email = snapshot.val().email;
-      primarySport = snapshot.val().primarySport;
-      age = snapshot.val().age
-      data = {
-          displayName,
-          email,
-          primarySport,
-          age
-      };
-      firebase.database().ref('Blockedusers/').push(data);
-  });
-
+ 
   return BlockRef.remove()
       .then(function() {
           window.alert("Blocked successfully\n Refresh The Page to see the changes");
@@ -175,6 +168,58 @@ function Blockeduser(key) {
           console.log("error occured");
       });
 }
+function deleteposts(key) {
+
+
+  var deleteRef = firebase.database().ref().child("posts").child(key);
+  firebase.database().ref('posts/' + key).on('value', snapshot => {
+    hostId = snapshot.val().hostId;
+    publishDate = snapshot.val().publishDate;
+    description = snapshot.val().description;
+    
+    data = { hostId, description, publishDate };
+    firebase.database().ref('deletedPosts/').push(data);
+  });
+
+  return deleteRef.remove()
+    .then(function () {
+      window.alert("Deleted successfully\n Refresh The Page to see the changes");
+    })
+    .catch(function () {
+      console.log("error occured");
+    });
+
+}
+var rootblockRef = firebase.database().ref().child("Blockedusers");
+
+function unblockeduser(key) {
+   rootblockRef.once("value",childSnap=>{
+    childSnap.forEach(function(snapshot){
+      data={};
+      if(snapshot.key == key){
+       
+        snapshot.forEach(function(child){
+          data[child.key]=child.val();
+        });
+        firebase.database().ref('users/').push(data);
+      }
+    })
+
+  })
+  var userRef = firebase.database().ref().child("Blockedusers").child(key);
+ 
+  return userRef.remove()
+      .then(function() {
+          window.alert("unlocked successfully\n Refresh The Page to see the changes");
+          window.location.reload();
+      })
+      .catch(function() {
+          console.log("error occured");
+      });
+ 
+}
+
+
 var rootdeleted_postRef = firebase.database().ref().child("deletedPosts");
 
 rootdeleted_postRef.on("child_added", childSnap => {
@@ -183,9 +228,7 @@ rootdeleted_postRef.on("child_added", childSnap => {
   var hostid = childSnap.child("hostId").val();
   var type = childSnap.child("type").val();
   var description = childSnap.child("description").val();
-  var location = childSnap.child("location").val();
-
-  // $("#event_deleted_posts").append("<span></span><button style='float:right' type='button' class='btn btn-warning'>Restore</button>");
+ var location = childSnap.child("location").val();
 
   $("#event_deleted_posts").append("<p> POST ID:" + postid + "</p>");
   $("#event_deleted_posts").append("<p> HOSTID: " + hostid + "</p>");
@@ -193,6 +236,8 @@ rootdeleted_postRef.on("child_added", childSnap => {
   $("#event_deleted_posts").append("<p> DESCRIPTION:" + description + "</p>");
   $("#event_deleted_posts").append("<p> LOCATION:" + location + "</p><hr><hr>");
 });
+
+
 var rootBlocked_userRef = firebase.database().ref().child("Blockedusers");
 
 rootBlocked_userRef.on("child_added", childSnap => {
@@ -202,7 +247,7 @@ rootBlocked_userRef.on("child_added", childSnap => {
   var primarySport = childSnap.child("primarySport").val();
   var age = childSnap.child("age").val();
 
-
+  $("#event_Blocked_user").append("<span></span><button style='float:right' type='button' class='btn btn-warning'  onclick=unblockeduser('" + childSnap.key + "')>Unblock</button>");
   $("#event_Blocked_user").append("<p> NAME:" + displayName + "</p>");
   $("#event_Blocked_user").append("<p> EMAIL: " + email + "</p>");
   $("#event_Blocked_user").append("<p> AGE: " + age + "</p>");
@@ -228,7 +273,41 @@ transactionRef.orderByChild("pending").equalTo(true).on("child_added", childSnap
 
 });
 
+var questionsRef = firebase.database().ref().child("sports");
+questionsRef .once('value', function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
+      var childKey = childSnapshot.key;
+      
+      $("#sports_info").append("<a  style='text-decoration:none; font-size:20px; color:grey;'  href='questions.html'  >" + childKey + "</a><br>");
+    
+    });
+  });
 
+
+var questionsRef = firebase.database().ref().child("quizQuestions");
+questionsRef.on("child_added", childSnap => {
+var childKey = childSnap.key;
+
+
+ $("#event_ques_name").append("<p style='font-size:15px; color:black'>" + childKey + "</p><br>");
+  childSnap.forEach(function(snapshot){
+      var id = snapshot.child("id").val();
+      var question=snapshot.child("question").val();
+      var correctOption=snapshot.child("correctOption").val();
+      var ansRef=firebase.database().ref("quizQuestions/"+childKey+"/"+snapshot.key).child("answers");
+      $("#event_ques_name").append("<p style='font-size:15px; color:grey'> Q " + question + "</p><br>");
+      ansRef.on("child_added",snap=>{
+        var skey=snap.key;
+        var sval=snap.val();
+       $("#event_ques_name").append("<span style='font-size:15px; color:grey'>" + skey + ") </span>");
+         $("#event_ques_name").append("<span style='font-size:15px; color:grey'>  " + sval + "</span><br><br>");
+      })
+  $("#event_ques_name").append("<p style='font-size:15px; color:grey'>Correct Ans" + correctOption + "</p><br>");
+
+  })
+}
+
+);
 $("#btn-login").click(function() {
   var email = $("#exampleInputEmail").val();
   var password = $("#exampleInputPassword").val();
