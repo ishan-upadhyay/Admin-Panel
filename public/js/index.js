@@ -1,12 +1,12 @@
 var firebaseConfig = {
-  apiKey: "AIzaSyAxpJ486Tx3BYWDTsyCNLy5C-h62-a5OPg",
-  authDomain: "khelod-admin.firebaseapp.com",
-  databaseURL: "https://khelod-admin.firebaseio.com",
-  projectId: "khelod-admin",
-  storageBucket: "khelod-admin.appspot.com",
-  messagingSenderId: "46514113739",
-  appId: "1:46514113739:web:47283b15902b9a31481f4e",
-  measurementId: "G-GJVX61KX9R"
+  apiKey: "AIzaSyASkpafFrFFN9NIiPXaLFKG9ewiW0nMjL0",
+  authDomain: "kheloapp-1ff8b.firebaseapp.com",
+  databaseURL: "https://kheloapp-1ff8b.firebaseio.com",
+  projectId: "kheloapp-1ff8b",
+  storageBucket: "kheloapp-1ff8b.appspot.com",
+  messagingSenderId: "319330959236",
+  appId: "1:319330959236:web:c9716a6cc021e36defa7d1",
+  measurementId: "G-SPDC289KVG"
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
